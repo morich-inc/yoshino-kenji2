@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉野賢治 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>吉野賢治 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. アライドアーキテクツ株式会社</a>
+  <a href="#k2">2. ユニテック株式会社</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">経営幹部候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">アライドアーキテクツ株式会社</div>
+  <div class="co-url"><a href="https://morich-inc.github.io/job-aainc_open/" target="_blank">https://morich-inc.github.io/job-aainc_open/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京</td></tr><tr><th>設立</th><td>2005年8月30日</td></tr><tr><th>従業員数</th><td>327名</td></tr><tr><th>資本金</th><td>886,930,516円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>20年分のVOC・SNSレビューという独自データ資産を保有</li><li>AIを活用した次世代モデル「AX（AIトランスフォーメーション）」への転換を推進</li><li>年収1000万～2000万程度と高待遇</li><li>充実した福利厚生制度（家賃手当、置き型フリー社食など）</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">マーケティングDX支援事業を展開するアライドアーキテクツ株式会社。20年分のVOC・SNSレビューという独自データ資産と、ビジネスに強い技術者集団を基盤に、AIを活用した次世代モデル「AX（AIトランスフォーメーション）」への転換を主導する経営人材を求めています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>マーケティングDX支援事業を展開するアライドアーキテクツ株式会社。2005年設立、従業員327名のサービス・レジャー業界の企業です。</p><p><strong>事業の特長</strong></p><ul><li>20年分のVOC・SNSレビューという独自データ資産を保有</li><li>ビジネスに強い技術者集団を基盤とした組織</li><li>AIを活用した次世代モデル「AX（AIトランスフォーメーション）」への転換を推進</li><li>マーケティング領域でのDX支援に強み</li></ul></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営幹部候補</div>
+          <div class="job-preview">AIを活用した既存ビジネスモデルの抜本的な変革を推進する経営人材</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>アライドアーキテクツが求めるのは、既存事業の延長ではなく、会社の勝ち筋そのものを再設計できる経営人材です。20年分のVOC・SNSレビューという独自データ資産と、ビジネスに強い技術者集団を基盤に、AIを活用した次世代モデル「AX（AIトランスフォーメーション）」への転換を主導。意思決定から実行・改善までを高速で回す、新たな事業創造体制を牽引いただける方を求めています。</p><p><strong>業務内容</strong></p><ul><li>AIを活用した既存ビジネスモデルの抜本的な変革推進</li><li>20年分のVOC・SNSレビューなど独自データ資産を活用した次世代モデルAXの構築・推進</li><li>代表依存の経営体制から脱却するための経営基盤強化</li><li>意思決定から実行、改善までを高速で回す事業運営体制の設計</li><li>少数精鋭化を前提とした生産性向上と組織変革のリード</li><li>既存の業界構造や商習慣に捉われない新たな勝ち筋の設計と事業開発</li></ul><p><strong>応募資格</strong></p><ul><li><span class='tag tag-must'>MUST</span> AI技術に強い関心を持ち、ビジネスへの活用経験</li><li><span class='tag tag-must'>MUST</span> マーケティング領域を経営視点で広義に捉え、事業を創造・成長させた経験</li></ul><p><strong>求める人物像</strong></p><ul><li>出来上がった組織の運営よりも、変革フェーズを楽しめる方</li><li>戦略立案に留まらず、自ら実行・改善まで踏み込める方</li><li>AIを前提に事業や組織のあり方を再設計できる方</li><li>経営陣、技術部門、顧客と本質的な議論ができる高い対話力をお持ちの方</li><li>既存の成功体験に依存せず、事業創造に強い意思と当事者意識を持てる方</li><li>不確実性の高い環境でも意思決定し、周囲を巻き込みながら前進できる方</li></ul><p><strong>給与</strong><br>年収1000万～2000万程度　※相談可能</p><p><strong>勤務時間</strong><br>基本就業時間 9：30～18：30（休憩60分）</p><p><strong>休日休暇</strong><br>完全週休2日制（土・日）、国民の祝日、年次有給休暇（入社3ヶ月後に付与）、産前産後休業、育児休業、介護休業、その他、慶弔、年末年始など</p><p><strong>待遇・福利厚生</strong><br>社会保険完備（関東ITソフトウェア健康保険組合）、交通費支給（上限15万円/月）、家賃手当「エビチカ」（2万円/月）、子ども手当、置き型フリー社食、リモートHQ、部活支援制度、シャッフルランチ、社内コミュニケーション活性化補助金制度、従業員持株会（奨励金50％）、書籍購入補助、資格・語学取得支援制度、研修受講支援、関東ITソフトウェア健康保険組合の保養施設・提携スポーツクラブ等の利用、定期健康診断、インフルエンザなどの予防接種費用の負担</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://morich-inc.github.io/job-aainc_open/" target="_blank">🏢 求人詳細</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">取締役候補・ナンバー2（将来の社長候補）</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">ユニテック株式会社</div>
+  <div class="co-url"><a href="" target="_blank"></a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京</td></tr><tr><th>設立</th><td>2021年9月1日</td></tr><tr><th>資本金</th><td>1,825万円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>神戸大学との産学連携によるディープテックスタートアップ</li><li>独自のAIスマート空調システムで20～50％の省エネ・コスト削減を実現</li><li>大手百貨店や流通企業への導入実績</li><li>将来的な社長候補としての経営承継が期待されるポジション</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">神戸大学が保有する空調制御技術の社会実装を目的として2021年に設立されたディープテックスタートアップ。独自のAIスマート空調システムにより、大規模商業施設や空港などにおいて20～50％の省エネ・コスト削減を実現しており、IPO準備を本格化するフェーズに入っています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>神戸大学との産学連携により、AIスマート空調システムとウイルスフリーエアシステムを開発・提供する環境IT企業。2021年設立のディープテックスタートアップです。</p><p><strong>事業の特長</strong></p><ul><li>神戸大学が保有する空調制御技術の社会実装</li><li>人流や温熱環境をAIで計測・予測し、空調エネルギー消費量を最大40％削減</li><li>神戸地下街「さんちか」、伊勢丹新宿本店、イトーヨーカドーなど59サイトで実証実験を展開</li><li>建設業や小売業のファシリティマネジメントを革新</li><li>脱炭素社会の実現を目指す環境IT企業</li></ul></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 取締役候補・ナンバー2（将来の社長候補）</div>
+          <div class="job-preview">IPO準備を本格化するディープテックスタートアップの経営を牽引する社長候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>当社は、神戸大学が保有する空調制御技術の社会実装を目的として2021年に設立されたディープテックスタートアップです。独自のAIスマート空調システムにより、大規模商業施設や空港などにおいて20～50％の省エネ・コスト削減を実現しており、既に大手百貨店や流通企業への導入実績を有しています。現在、事業成長およびIPO準備を本格化するフェーズに入り、経営体制の強化が急務となっています。代表はグループ企業経営も兼務していることから、将来的には経営全般を担う社長候補・ナンバー2として事業を牽引いただける方をお迎えしたいと考えています。</p><p><strong>ポジション概要</strong><br>取締役候補として、経営陣の一員となり事業成長と組織拡大をリードしていただきます。単なる管理職ではなく、事業戦略・営業戦略・組織づくり・資本政策・IPO準備など、経営全般に深く関与いただくポジションです。将来的には代表から事業運営を承継し、社長として経営を担っていただくことも期待しています。</p><p><strong>ミッション</strong></p><ul><li>事業成長戦略の立案および実行</li><li>IPOに向けた経営基盤・ガバナンス体制の構築</li><li>営業／事業開発組織の強化</li><li>大手企業とのアライアンス推進</li><li>組織マネジメントおよび幹部採用</li><li>中期経営計画の策定</li><li>取締役会運営および経営管理体制の整備</li><li>将来的な経営承継の準備</li></ul><p><strong>業務内容</strong></p><ul><li>経営戦略・事業戦略の策定</li><li>売上拡大に向けた営業戦略立案</li><li>大型案件の推進およびエグゼクティブセールス</li><li>流通、小売、不動産、商社、空港などとのアライアンス構築</li><li>組織設計およびマネジメント</li><li>予算策定／KPI管理</li><li>資金調達および投資家対応</li><li>IPO準備全般</li><li>経営会議、取締役会の運営</li></ul><p><strong>給与</strong><br>応相談</p><p><strong>休日休暇</strong><br>土日祝休み／年休120日</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが吉野賢治 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
